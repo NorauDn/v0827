@@ -12,15 +12,22 @@ namespace v0827
 {
     public partial class Form1 : Form
     {
-        int vx=-10, vy=-10;
+        int vx = rand.Next(-10,11);
+        int vy = rand.Next(-10,11);
+        static Random rand = new Random();
         public Form1()
         {
             InitializeComponent();
+
+            label1.Left = rand.Next(ClientSize.Width-ClientSize.Width);
+            label1.Top = rand.Next(ClientSize.Height-ClientSize.Height);
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            timer1.Enabled = true;
+            label1.Text = "(*´ω｀*)";
+            timer1.Interval = 60;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -36,6 +43,17 @@ namespace v0827
             Point mp = MousePosition;
             mp = PointToClient(mp);
             label2.Text = "" + mp.X + "," + mp.Y;
+
+            label3.Text = "" + label1.Left + "," + label1.Top;
+
+            if(timer1.Interval > 5)
+            {
+                timer1.Interval = timer1.Interval - rand.Next(-2,4);
+            }
+            else
+            {
+                timer1.Interval = timer1.Interval + rand.Next(0, 11);
+            }
 
             if(label1.Left < 0)
             {
@@ -53,6 +71,7 @@ namespace v0827
             {
                 vy = -Math.Abs(vy);
             }
+
             if ((label1.Left <= mp.X) && 
                 (label1.Right > mp.X) &&
                 (label1.Top <= mp.Y) && 
