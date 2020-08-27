@@ -36,6 +36,31 @@ namespace v0827
             Point mp = MousePosition;
             mp = PointToClient(mp);
             label2.Text = "" + mp.X + "," + mp.Y;
+
+            if(label1.Left < 0)
+            {
+                vx = Math.Abs(vx);
+            }
+            if(label1.Top < 0)
+            {
+                vy = Math.Abs(vy);
+            }
+            if(label1.Right > ClientSize.Width)
+            {
+                vx = -Math.Abs(vx);
+            }
+            if(label1.Bottom > ClientSize.Height)
+            {
+                vy = -Math.Abs(vy);
+            }
+            if ((label1.Left <= mp.X) && 
+                (label1.Right > mp.X) &&
+                (label1.Top <= mp.Y) && 
+                (label1.Bottom > mp.Y)) 
+            {
+                timer1.Enabled = false;
+                label1.Text = "( ﾟДﾟ)";
+            }
         }
     }
 }
