@@ -14,6 +14,10 @@ namespace v0827
     {
         int vx = rand.Next(-10,11);
         int vy = rand.Next(-10,11);
+        int vx2 = rand.Next(-10, 11);
+        int vy2 = rand.Next(-10, 11);
+        int vx3 = rand.Next(-10, 11);
+        int vy3 = rand.Next(-10, 11);
         static Random rand = new Random();
         public Form1()
         {
@@ -39,6 +43,13 @@ namespace v0827
         {
             label1.Left += vx;
             label1.Top += vy;
+
+            label4.Left += vx2;
+            label4.Top += vy2;
+
+            label5.Left += vx3;
+            label5.Top += vy3;
+
 
             Point mp = MousePosition;
             mp = PointToClient(mp);
@@ -72,6 +83,40 @@ namespace v0827
                 vy = -Math.Abs(vy);
             }
 
+            if (label4.Left < 0)
+            {
+                vx2 = Math.Abs(vx);
+            }
+            if (label4.Top < 0)
+            {
+                vy2 = Math.Abs(vy);
+            }
+            if (label4.Right > ClientSize.Width)
+            {
+                vx2 = -Math.Abs(vx);
+            }
+            if (label4.Bottom > ClientSize.Height)
+            {
+                vy2 = -Math.Abs(vy);
+            }
+
+            if (label5.Left < 0)
+            {
+                vx3 = Math.Abs(vx);
+            }
+            if (label5.Top < 0)
+            {
+                vy3 = Math.Abs(vy);
+            }
+            if (label5.Right > ClientSize.Width)
+            {
+                vx3 = -Math.Abs(vx);
+            }
+            if (label5.Bottom > ClientSize.Height)
+            {
+                vy3 = -Math.Abs(vy);
+            }
+
             if ((label1.Left <= mp.X) && 
                 (label1.Right > mp.X) &&
                 (label1.Top <= mp.Y) && 
@@ -80,6 +125,16 @@ namespace v0827
                 timer1.Enabled = false;
                 label1.Text = "( ﾟДﾟ)";
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
